@@ -6,7 +6,7 @@
 #define list_get(curr, structure, name) ((structure *)((long)(curr) - (long)offsetof(structure, name)))
 #define list_insert(curr, next, structure, name) __internal_insert_list_after(&((curr)->name), &((next)->name))
 #define list_remove(curr, structure, name) __internal_remove_list(curr, offsetof(structure, name))
-#define list_size(curr, struct, name) __internal_list_size(&(curr->name))
+#define list_size(curr, structure, name) __internal_list_size(&(curr->name))
 #define list_iter(iter, curr, structure, name, code) {\
     struct list *__list_iterator = curr;\
     do {\
