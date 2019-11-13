@@ -2,8 +2,8 @@
 
 #include <stddef.h>
 
-#define list_new(x, structure, name) (__internal_new_list(&(x->name)))
-#define list_get(x, structure, name) ((structure *)((long)(x) - (long)offsetof(structure, name)))
+#define list_new(curr, structure, name) (__internal_new_list(&(curr->name)))
+#define list_get(curr, structure, name) ((structure *)((long)(curr) - (long)offsetof(structure, name)))
 #define list_insert(curr, next, structure, name) __internal_insert_list_after(&((curr)->name), &((next)->name))
 #define list_remove(curr, structure, name) __internal_remove_list(curr, offsetof(structure, name))
 #define list_size(curr, struct, name) __internal_list_size(&(curr->name))
@@ -17,7 +17,20 @@
 }
 
 struct list {
-    struct list *prev, *next;
+    /**
+     * struct list - the doubly linked list structure
+     * 
+     * The doubly linked list forms a closed ring that the 'first' and 'last' element are  
+     * connected through pointers.
+     * The structure has no defined first element. Every element can be used as a first el-
+     * ment and can use it to iterate through the entire list.
+     * Note that if there is no element in the doubly linked list, the list itself cease to
+     * exist.
+     * 
+     * To use the list, define a struct list element in the structure that you wish to be  
+     * doubly linked, then use macro functions to operate the list.
+     */
+    struct list *prev, *next; /* the previous and next pointer in the doubly linked list */
 };
 
 extern void __internal_new_list(struct list* head); 
