@@ -22,7 +22,7 @@ struct list {
 
 extern void __internal_new_list(struct list* head); 
 extern void __internal_insert_list_after(struct list* curr, struct list* insertion);
-void __internal_remove_list(struct list* curr, long offset);
+extern void __internal_remove_list(struct list* curr, long offset);
 extern int __internal_list_size(struct list* head);
 
 // extern void __debug_print(struct list* p);
